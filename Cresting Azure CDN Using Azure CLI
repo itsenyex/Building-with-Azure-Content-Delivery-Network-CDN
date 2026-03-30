@@ -1,0 +1,15 @@
+# Create resource group
+az group create --name myResourceGroup --location eastus
+
+# Create CDN profile
+az cdn profile create \
+  --resource-group myResourceGroup \
+  --name myCDNProfile \
+  --sku Standard_Microsoft
+
+# Create CDN endpoint
+az cdn endpoint create \
+  --resource-group myResourceGroup \
+  --profile-name myCDNProfile \
+  --name myEndpoint \
+  --origin www.contoso.com
