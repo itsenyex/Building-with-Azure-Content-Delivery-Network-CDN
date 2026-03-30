@@ -1,0 +1,80 @@
+What is Azure CDN?
+
+CDN = Content Delivery Network
+Think of it as a global network of servers that stores copies of your website/files and delivers them to users from the closest location.
+
+Simple Analogy
+Without CDN:
+Imagine you have one restaurant in New York, and people from all over the world (London, Tokyo, Sydney) have to travel to New York every time they want your food. That's slow and expensive!
+
+With CDN:
+Now you open branches of your restaurant in major cities worldwide. People in London go to the London branch, people in Tokyo go to the Tokyo branch. Same food, but much faster because it's closer!
+Azure CDN does this for your website content.
+
+High-Level Architecture
+​The flow works like this:
+​Origin: Your files are stored in an Azure Storage Blob container.
+​Edge Node: When a user requests a file, the CDN checks the nearest "Point of Presence" (PoP).
+​Cache: If the file isn't there, the CDN pulls it from your Storage, caches it, and delivers it to the user.
+
+​Step-by-Step Implementation
+​1. Set Up the Storage Account
+​First, you need a place to hold your files.
+​Go to the Azure Portal and create a Storage Account.
+​In the left sidebar, find Static website and enable it.
+​Set your Index document name (e.g., index.html).
+​Upload your files (HTML, CSS, JS, images) to the newly created $web container.
+
+
+​2. Create the CDN Profile
+​The profile is the wrapper for your CDN settings.
+​Search for Front Door and CDN profiles.
+​Select Create and choose Azure CDN Standard from Microsoft (good for most general projects).
+​Give it a name and a resource group.
+
+
+​3. Create the CDN Endpoint
+​This is the specific URL (e.g., yourproject.azureedge.net) that users will access.
+​Origin type: Select Static website.
+​Origin hostname: Choose the endpoint provided by your Storage Account (usually accountname.z6.web.core.windows.net).
+​Query string caching: Leave as "Ignore query strings" for now.
+
+
+​4. Configure Optimization
+​Once the endpoint is created, click on it to fine-tune your project:
+​Compression: Enable this to automatically shrink your CSS and JS files for faster delivery.
+​Caching Rules: Define how long the CDN should keep your files before checking back with the Storage Account (the "Time to Live" or TTL).
+
+Key uses of CDN
+1. Website Performance Acceleration
+2. Media Streaming
+3. Large File Distribution
+4. E-commerce Sites
+5. API Acceleration
+6. Mobile App Content Delivery
+7. Gaming
+8. Global Web Applications
+9. Software as a Service (SaaS)
+10. Security Enhancement
+
+
+Key Benefits
+Performance:
+Reduced latency through edge caching
+Faster content delivery worldwide
+
+Scalability:
+Handle traffic spikes automatically
+No infrastructure management needed
+
+Cost Savings:
+Reduced bandwidth costs on origin servers
+Pay only for data transfer and requests
+
+Reliability:
+High availability through distributed edge network
+Automatic failover capabilities
+
+Global Reach:
+100+ edge locations worldwide
+Serve users on every continent.
